@@ -4,11 +4,18 @@
       + 修改父pom文件
         ```
         <parent>
-          <groupId>io.comi.common</groupId>
-          <artifactId>common-parent</artifactId>
-          <version>0.0.1-SNAPSHOT</version>
+            <groupId>io.comi.common</groupId>
+            <artifactId>common-spring-boot-parent</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </parent>
         ```
+      + 设置plugin
+         ```
+         <plugin>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+         ```
       + 添加spring依赖
 		+ spring-boot 核心
 		  ```
@@ -39,6 +46,12 @@
 	    添加注解`@ComponentScan(basePackages = "io.comi.zero")`,注意这里的`basePackages`属性是个数组`
 	  + 引入传统的xml配置文件
 	    添加注解`@ImportResource("classpath:spring/zero.xml")`
+	  + 修改pom文件，添加属性 `start-class`
+	     ```
+	     <properties>
+             <start-class>io.comi.zero.server.ZeroServerApplication</start-class>
+         </properties>
+	     ```
    4. swagger
       + pom
 	    ```

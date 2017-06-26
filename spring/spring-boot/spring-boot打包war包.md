@@ -21,6 +21,15 @@
        </dependencies>
    </dependencyManagement>
    ```
+3. 以上两步可以统一修改为
+   ```
+   <parent>
+       <groupId>io.comi.common</groupId>
+       <artifactId>common-spring-boot-parent</artifactId>
+       <version>1.0-SNAPSHOT</version>
+   </parent>
+   ```
+
 3. 修改 打包方式为 war
    ```
     <packaging>war</packaging>
