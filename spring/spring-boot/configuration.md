@@ -32,4 +32,9 @@
 4. 关键注解
 	1. `@ConfigurationProperties`
 	2. `@Value`
+### @Value的使用方式
+http://www.cnblogs.com/larryzeal/p/5910149.html
+http://blog.csdn.net/tt50335971/article/details/52599760
+
+可以通过`${property:defaultValue}`的方式来指定默认值
 		
