@@ -1,0 +1,20 @@
+- hosts: 101.201.109.161
+  tasks:
+  - name: pull image
+    shell: docker pull 127.0.0.1:5000/{{module_name}}
+
+  - name: find container
+    shell: docker ps -f "label=service={{module_name}}" -q
+    register: container_id
+    ignore_errors: True
+
+  - name: stop container
+    shell: docker stop {{container_id.stdout}}
+    when: container_id.stdout != ""
+
+  - name: remove container
+    shell: docker rm {{container_id.stdout}}
+    when: container_id.stdout != ""
+
+  - name: start image
+    shell: docker run -d -p {{module_port}}:{{module_port}} -e SPRING_PROFILES_ACTIVE={{spring_profiles_active}} --restart=always -l service={{module_name}} 127.0.0.1:5000/{{module_name}}

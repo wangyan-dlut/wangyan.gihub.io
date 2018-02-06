@@ -1,0 +1,160 @@
+version: '3'
+services:
+    ctx-cloud-eureka-1:
+      image: 101.201.110.191:5000/ctx-cloud-eureka
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-cloud-eureka-1
+      deploy:
+        replicas: 1
+      ports:
+        - "11001:10001"
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+        - eureka.client.service-url.defaultZone=http://ctx-cloud-eureka-2:10001/eureka/
+
+    ctx-cloud-eureka-2:
+      image: 101.201.110.191:5000/ctx-cloud-eureka
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-cloud-eureka-2
+      deploy:
+        replicas: 1
+      ports:
+        - "11002:10001"
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+        - eureka.client.service-url.defaultZone=http://ctx-cloud-eureka-1:10001/eureka/
+
+    ctx-cloud-admin:
+      image: 101.201.110.191:5000/ctx-cloud-admin
+      networks:
+        ctx-network:
+           aliases:
+            - ctx-cloud-admin
+
+      deploy:
+        replicas: 1
+      ports:
+        - "11012:10012"
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-cloud-turbine:
+      image: 101.201.110.191:5000/ctx-cloud-turbine
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-cloud-turbine
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-cloud-zuul:
+      image: 101.201.110.191:5000/ctx-cloud-zuul
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-cloud-zuul
+      deploy:
+        replicas: 2
+      ports:
+        - "11011:10011"
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-user:
+      image: 101.201.110.191:5000/ctx-user
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-user
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-taxation:
+      image: 101.201.110.191:5000/ctx-taxation
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-taxation
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-setting:
+      image: 101.201.110.191:5000/ctx-setting
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-setting
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-recbill:
+      image: 101.201.110.191:5000/ctx-recbill
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-recbill
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-finance:
+      image: 101.201.110.191:5000/ctx-finance
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-finance
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+    ctx-dispatching:
+      image: 101.201.110.191:5000/ctx-dispatching
+      networks:
+        ctx-network:
+          aliases:
+            - ctx-dispatching
+      deploy:
+        replicas: 1
+      restart: always
+      environment:
+        - SPRING_PROFILES_ACTIVE=cluster
+        - spring.cloud.inetutils.preferred-networks=['10.0']
+
+networks:
+  ctx-network:
+    external:
+      name: ctx-network

@@ -1,0 +1,2 @@
+Docker Compse 配置文件语法 https://docs.docker.com/compose/compose-file
+Docker swarm eureka 显示名称不正确 https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwiG0p_--O_YAhWHqlMKHS2TCUQQFggsMAA&url=https%3A%2F%2Fgithub.com%2Fspring-cloud%2Fspring-cloud-netflix%2Fissues%2F1820&usg=AOvVaw3PRZ9iCNbkw8ckXBHtC2LU
